@@ -7,9 +7,12 @@ function App() {
   const CandyColor = ['blue', 'green', 'red', 'orange', 'yellow', 'purple']
 
   const [currentColor, sertCurrentColorArrange] = useState([])
+  const [squareBeignDragged, setsquareBeignDragged] = useState(null)
+  const [squareBeignRPlaced, setsquareBeignRPlaced ]= useState(null)
+
 
   const checkForColoumofThree = () => {
-    for (let i = 0; i <=47; i++) {
+    for (let i = 0; i <= 47; i++) {
       const coloumofThree = [i, i + width, i + width * 2]
       const decideColor = currentColor[i]
       if (coloumofThree.every(square => currentColor[square] == decideColor)) {
@@ -77,9 +80,10 @@ function App() {
   }
 
   const DragStart = (e) => {
-
+    setsquareBeignDragged(e.target)
   }
   const DragDrop = (e) => {
+    setsquareBeignRPlaced(e.target)
 
   }
   const DragEnd = (e) => {
