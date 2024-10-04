@@ -10,10 +10,6 @@ import yellow from './assets/images/y.png'
 import balnk from './assets/images/bl.png'
 import ScoreBoard from './components/score'
 
-
-
-
-
 function App() {
   const width = 8
   const CandyColor = [blue, green, red, orange, yellow, pruple]
@@ -23,17 +19,15 @@ function App() {
   const [squareBeignRPlaced, setsquareBeignRPlaced] = useState(null)
   const [scoreDispaly, setscoreDispaly] = useState(0)
 
-
   const checkForColoumofThree = () => {
     for (let i = 0; i <= 47; i++) {
       const coloumofThree = [i, i + width, i + width * 2]
       const decideColor = currentColor[i]
-      const isbalnk = currentColor[i] == balnk
-      if (coloumofThree.every(square => currentColor[square] == decideColor && !balnk)) {
+      const isbalnk = currentColor[i] === balnk
+      if (coloumofThree.every(square => currentColor[square] === decideColor && currentColor[square] !== balnk)) {
         setscoreDispaly((score) => score + 3)
         coloumofThree.forEach(square => currentColor[square] = balnk)
         return true
-
       }
     }
   }
@@ -42,15 +36,14 @@ function App() {
     for (let i = 0; i < 64; i++) {
       const RowfThree = [i, i + 1, i + 2]
       const decideColor = currentColor[i]
-      const isbalnk = currentColor[i] == balnk
+      const isbalnk = currentColor[i] === balnk
       const notvaild = [6, 7, 14, 15, 22, 23, 30, 31, 38, 39, 46, 47, 54, 55, 63, 64]
       if (notvaild.includes(i)) continue
 
-      if (RowfThree.every(square => currentColor[square] == decideColor  && !balnk)) {
+      if (RowfThree.every(square => currentColor[square] === decideColor && currentColor[square] !== balnk)) {
         setscoreDispaly((score) => score + 3)
         RowfThree.forEach(square => currentColor[square] = balnk)
         return true
-
       }
     }
   }
@@ -59,33 +52,30 @@ function App() {
     for (let i = 0; i < 64; i++) {
       const RowfFour = [i, i + 1, i + 2, i + 3]
       const decideColor = currentColor[i]
-      const isbalnk = currentColor[i] == balnk
+      const isbalnk = currentColor[i] === balnk
       const notvaild = [5, 6, 7, 13, 14, 15, 21, 22, 23, 29, 30, 31, 37, 38, 39, 45, 46, 47, 53, 54, 55, 62, 63, 64]
       if (notvaild.includes(i)) continue
 
-      if (RowfFour.every(square => currentColor[square] == decideColor  && !balnk)) {
+      if (RowfFour.every(square => currentColor[square] === decideColor && currentColor[square] !== balnk)) {
         setscoreDispaly((score) => score + 4)
         RowfFour.forEach(square => currentColor[square] = balnk)
         return true
-
       }
     }
   }
-
 
   const checkForColoumofFour = () => {
     for (let i = 0; i <= 39; i++) {
       const coloumofFour = [i, i + width, i + width * 2, i + width * 3]
       const decideColor = currentColor[i]
-      const isbalnk = currentColor[i] == balnk
-      if (coloumofFour.every(square => currentColor[square] == decideColor  && !balnk)) {
+      const isbalnk = currentColor[i] === balnk
+      if (coloumofFour.every(square => currentColor[square] === decideColor && currentColor[square] !== balnk)) {
         setscoreDispaly((score) => score + 4)
         coloumofFour.forEach(square => currentColor[square] = balnk)
         return true
       }
     }
   }
-
 
   const moveintoSquareBewlo = () => {
     for (let i = 0; i < 64 - width; i++) {
@@ -108,7 +98,6 @@ function App() {
   }
   const DragDrop = (e) => {
     setsquareBeignRPlaced(e.target)
-
   }
   const DragEnd = () => {
     const squareBeingDraggedid = parseInt(squareBeignDragged.getAttribute('data-id'))
@@ -135,10 +124,7 @@ function App() {
       currentColor[squareBeingDraggedid] = squareBeignDragged.getAttribute('src')
       sertCurrentColorArrange([...currentColor])
     }
-
   }
-
-
 
   const createBoard = () => {
     const randomColorArragment = []
@@ -153,7 +139,6 @@ function App() {
     createBoard()
   }, [])
 
-
   useEffect(() => {
     const timer = setInterval(() => {
       checkForColoumofFour()
@@ -166,8 +151,6 @@ function App() {
     return () => clearInterval(timer)
   }, [checkForColoumofFour, checkForRowofFour, checkForColoumofThree, checkForRowofThree, moveintoSquareBewlo, currentColor])
 
-
-
   return (
     <div className='app'>
       <div className='game'>
@@ -179,14 +162,11 @@ function App() {
             onDragLeave={(e) => e.preventDefault()}
             onDrop={DragDrop}
             onDragEnd={DragEnd}
-
           />
         ))}
       </div>
       <ScoreBoard score={scoreDispaly} />
     </div>
-
-
   )
 }
 
