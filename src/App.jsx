@@ -8,7 +8,7 @@ function App() {
 
   const [currentColor, sertCurrentColorArrange] = useState([])
   const [squareBeignDragged, setsquareBeignDragged] = useState(null)
-  const [squareBeignRPlaced, setsquareBeignRPlaced ]= useState(null)
+  const [squareBeignRPlaced, setsquareBeignRPlaced] = useState(null)
 
 
   const checkForColoumofThree = () => {
@@ -17,6 +17,7 @@ function App() {
       const decideColor = currentColor[i]
       if (coloumofThree.every(square => currentColor[square] == decideColor)) {
         coloumofThree.forEach(square => currentColor[square] = '')
+        return true
 
       }
     }
@@ -31,6 +32,7 @@ function App() {
 
       if (RowfThree.every(square => currentColor[square] == decideColor)) {
         RowfThree.forEach(square => currentColor[square] = '')
+        return true
 
       }
     }
@@ -45,6 +47,7 @@ function App() {
 
       if (RowfFour.every(square => currentColor[square] == decideColor)) {
         RowfFour.forEach(square => currentColor[square] = '')
+        return true
 
       }
     }
@@ -57,7 +60,7 @@ function App() {
       const decideColor = currentColor[i]
       if (coloumofFour.every(square => currentColor[square] == decideColor)) {
         coloumofFour.forEach(square => currentColor[square] = '')
-
+        return true
       }
     }
   }
@@ -87,6 +90,22 @@ function App() {
 
   }
   const DragEnd = (e) => {
+    const squareBeingDraggedid = parseInt(squareBeignDragged.getAttribute('data-id'))
+    const squareBeingReplaceid = parseInt(squareBeignRPlaced.getAttribute('data-id'))
+    currentColor[squareBeingReplaceid] = squareBeignDragged.style.backgroundColor
+    currentColor[squareBeingDraggedid] = squareBeignRPlaced.style.backgroundColor
+
+    const validMoves = [
+      squareBeingReplaceid - 1,
+      squareBeingDraggedid - width,
+      squareBeingDraggedid + 1,
+      squareBeignDragged + width
+    ]
+    const vaildMove = validMoves.includes(squareBeingReplaceid)
+    const isARowoffhree = checkForColoumofFour()
+    const isAcolmoffour = checkForRowofFour()
+    const isARowofthree = checkForColoumofThree()
+    const isAcolumofFour = checkForRowofThree()
 
   }
 
