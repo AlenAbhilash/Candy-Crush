@@ -1,11 +1,17 @@
 body {
     background-image: url('https://i0.wp.com/insider-gaming.com/wp-content/uploads/2023/09/candy-crush.jpg?fit=1920%2C1200&ssl=1');
     background-size: cover;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 .app {
+    margin-top: 100px;
+    margin-left: 460px;
     display: flex;
     padding: 30px;
+    width: 650px;
 }
 
 .game {
