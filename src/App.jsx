@@ -1,6 +1,17 @@
 import { useState } from 'react'
 import './App.css'
 import { useEffect } from 'react'
+import blue from './assets/images/b.png'
+import green from './assets/images/g.png'
+import orange from './assets/images/o.png'
+import pruple from './assets/images/p.png'
+import red from './assets/images/r.png'
+import yellow from './assets/images/y.png'
+import balnk from './assets/images/bl.png'
+
+
+
+
 
 function App() {
   const width = 8
@@ -102,10 +113,18 @@ function App() {
       squareBeignDragged + width
     ]
     const vaildMove = validMoves.includes(squareBeingReplaceid)
-    const isARowoffhree = checkForColoumofFour()
+    const isARowoffour = checkForColoumofFour()
     const isAcolmoffour = checkForRowofFour()
     const isARowofthree = checkForColoumofThree()
-    const isAcolumofFour = checkForRowofThree()
+    const isAcolumofThree = checkForRowofThree()
+    if (squareBeingReplaceid && vaildMove && (isARowoffour || isAcolmoffour || isARowofthree || isAcolumofThree)) {
+      setsquareBeignDragged(null)
+      setsquareBeignRPlaced(null)
+    } else {
+      currentColor[squareBeingReplaceid] = squareBeignRPlaced.style.backgroundColor
+      currentColor[squareBeingDraggedid] = squareBeignDragged.style.backgroundColor
+      sertCurrentColorArrange([...currentColor])
+    }
 
   }
 
