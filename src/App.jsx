@@ -153,7 +153,7 @@ function App() {
 
   return (
     <>
-      <div>
+      <div className='text-center justify-content-center align-items-center d-flex'>
         <ScoreBoard score={scoreDispaly} />
       </div>
       <div className='app'>
