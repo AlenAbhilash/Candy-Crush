@@ -152,21 +152,25 @@ function App() {
   }, [checkForColoumofFour, checkForRowofFour, checkForColoumofThree, checkForRowofThree, moveintoSquareBewlo, currentColor])
 
   return (
-    <div className='app'>
-      <div className='game'>
-        {currentColor.map((candyColor, index) => (
-          <img src={candyColor} alt="" key={index}
-            data-id={index} draggable={true} onDragOver={(e) => e.preventDefault()}
-            onDragStart={DragStart}
-            onDragEnter={(e) => e.preventDefault()}
-            onDragLeave={(e) => e.preventDefault()}
-            onDrop={DragDrop}
-            onDragEnd={DragEnd}
-          />
-        ))}
+    <>
+      <div>
+        <ScoreBoard score={scoreDispaly} />
       </div>
-      <ScoreBoard score={scoreDispaly} />
-    </div>
+      <div className='app'>
+        <div className='game'>
+          {currentColor.map((candyColor, index) => (
+            <img src={candyColor} alt="" key={index}
+              data-id={index} draggable={true} onDragOver={(e) => e.preventDefault()}
+              onDragStart={DragStart}
+              onDragEnter={(e) => e.preventDefault()}
+              onDragLeave={(e) => e.preventDefault()}
+              onDrop={DragDrop}
+              onDragEnd={DragEnd}
+            />
+          ))}
+        </div>
+      </div>
+    </>
   )
 }
 
